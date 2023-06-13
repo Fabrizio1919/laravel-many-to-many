@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTecnologyRequest;
-use App\Http\Requests\UpdateTecnologyRequest;
-use App\Models\Tecnology;
+use App\Http\Requests\StoreTechnologyRequest;
+use App\Http\Requests\UpdateTechnologyRequest;
+use App\Models\Technology;
 use Illuminate\Support\Str;
 
-class TecnologyController extends Controller
+class TechnologyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class TecnologyController extends Controller
      */
     public function index()
     {
-        $tecnologies = Tecnology::all();
-        return view('admin.tecnologies.index', compact('tecnologies'));
+        $technologies = Technology::all();
+        return view('admin.technologies.index', compact('technologies'));
     }
 
     /**
@@ -28,77 +28,77 @@ class TecnologyController extends Controller
      */
     public function create()
     {
-        return view('admin.tecnologies.create');
+        return view('admin.technologies.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTecnologyRequest  $request
+     * @param  \App\Http\Requests\StoreTechnologyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTecnologyRequest $request)
+    public function store(StoreTechnologyRequest $request)
     {
         $data = $request->validated();
 
-        $tecnology = new Tecnology();
-        $tecnology->fill($data);
+        $technology = new Technology();
+        $technology->fill($data);
 
-        $tecnology->slug =  Str::slug($data['name']);
+        $technology->slug =  Str::slug($data['name']);
 
-        $tecnology->save();
+        $technology->save();
 
-        return redirect()->route('admin.tecnologies.index')->with('message', 'Teconologia creata con successo');
+        return redirect()->route('admin.technologies.index')->with('message', 'Teconologia creata con successo');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tecnology  $tecnology
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function show(Tecnology $tecnology)
+    public function show(Technology $technology)
     {
-        return view('admin.tecnologies.show', compact('tecnology'));
+        return view('admin.technologies.show', compact('technology'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tecnology  $tecnology
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tecnology $tecnology)
+    public function edit(Technology $technology)
     {
-        return view('admin.tecnologies.edit', compact('tecnology'));
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTecnologyRequest  $request
-     * @param  \App\Models\Tecnology  $tecnology
+     * @param  \App\Http\Requests\UpdateTechnologyRequest  $request
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTecnologyRequest $request, Tecnology $tecnology)
+    public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
         $data = $request->validated();
-        $tecnology->slug =  Str::slug($data['name']);
-        $tecnology->update($data);
+        $technology->slug =  Str::slug($data['name']);
+        $technology->update($data);
 
-        return redirect()->route('admin.tecnologies.index', $tecnology->id)->with('message', 'Tecnology ' . $tecnology->id . ' modificato con successo');
+        return redirect()->route('admin.technologies.index', $technology->id)->with('message', 'Technology ' . $technology->id . ' modificato con successo');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tecnology  $tecnology
+     * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tecnology $tecnology)
+    public function destroy(Technology $technology)
     {
-        $tecnology->delete();
+        $technology->delete();
 
-        return redirect()->route('admin.tecnologies.index')->with('message', "Tecnology cancellata con successo");
+        return redirect()->route('admin.technologies.index')->with('message', "Technology cancellata con successo");
     }
 }
