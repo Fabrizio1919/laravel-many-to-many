@@ -18,7 +18,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <form action="{{ route('admin.tecnologies.destroy', $technology->id) }}" method="POST">
+                        <form action="{{ route('admin.technologies.destroy', $technology->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-primary">Confirm</button>
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <a href="{{ route('admin.tecnologies.edit', $technology->id) }}" class="btn btn-warning btn-sm d-inline-block">
+        <a href="{{ route('admin.technologies.edit', $technology->id) }}" class="btn btn-warning btn-sm d-inline-block">
             @include('partials.svg.edit')
         </a>
     </div>
